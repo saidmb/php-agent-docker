@@ -1,0 +1,17 @@
+version: '2.4'
+services:
+  agent:
+    depends_on:
+      - daemon
+    build:
+      context: agent
+      args:
+        NEW_RELIC_AGENT_VERSION: 9.2.0.247
+        NEW_RELIC_LICENSE_KEY: ${NEW_RELIC_LICENSE_KEY}
+        NEW_RELIC_APPNAME: 'New Relic PHP Container'
+        NEW_RELIC_DAEMON_ADDRESS: 'daemon:31339'
+  daemon:
+    build:
+      context: daemon
+      args:
+        NEW_RELIC_AGENT_VERSION: 9.2.0.247
